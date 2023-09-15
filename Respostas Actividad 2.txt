@@ -1,0 +1,169 @@
+%\item 1: Alternativa A (Sí)
+%Sí, al variar el parámetro en el mapa logístico, es posible que se produzcan cambios en la topología del atractor. El mapa logístico es un modelo matemático utilizado para describir la dinámica de una población en crecimiento, y su ecuación se define como:
+
+%Xn+1 = r * Xn * (1 - Xn)
+
+%Donde Xn es el valor de la población en el tiempo n, Xn+1 es el valor en el tiempo n+1 y r es el parámetro que controla la tasa de crecimiento de la población.
+
+%El comportamiento del sistema dinámico definido por el mapa logístico depende del valor del parámetro r. Para valores de r en el rango de 0 a 4, el sistema puede exhibir una variedad de comportamientos, incluyendo estabilidad, oscilaciones periódicas y caos.
+
+%El atractor de un sistema dinámico es una representación visual de las trayectorias a las que tiende el sistema en el largo plazo. En el caso del mapa logístico, los atractores pueden tomar formas complejas y fractales.
+
+%Al variar el parámetro r en el mapa logístico, es posible observar cambios en la topología del atractor. Por ejemplo, para valores bajos de r, el sistema puede converger hacia un único punto fijo o mostrar oscilaciones periódicas simples. A medida que el valor de r aumenta, el sistema puede experimentar bifurcaciones y exhibir oscilaciones periódicas más complejas, como periodos duplicados, cuadruplicados, etc. A medida que r continúa aumentando, el sistema puede entrar en un estado de caos, donde las trayectorias se vuelven altamente sensibles a las condiciones iniciales y el atractor puede tener una estructura fractal.
+
+%En resumen, al variar el parámetro r en el mapa logístico, se pueden observar cambios significativos en la topología del atractor, lo que refleja diferentes comportamientos del sistema dinámico.
+%\item 2: Alternativa C (La base de atracción es únicamente el punto fijo x=0.5)
+%En el mapa logístico con parámetro R=2, la base de atracción del punto fijo x=0.5 se refiere al conjunto de condiciones iniciales que convergen hacia ese punto fijo después de un número suficientemente grande de iteraciones.
+
+%Para determinar la base de atracción del punto fijo x=0.5 en el mapa logístico con R=2, se puede realizar un análisis iterativo partiendo de diferentes valores iniciales y observar si convergen hacia 0.5.
+
+%Comenzando con un valor inicial x0, se aplica la fórmula del mapa logístico repetidamente:
+
+%Xn+1 = 2 * Xn * (1 - Xn)
+
+%Se itera este proceso varias veces, sustituyendo el valor obtenido en cada paso en la fórmula para obtener el siguiente valor. Si después de un número suficientemente grande de iteraciones el valor converge hacia x=0.5, entonces se considera que esa condición inicial está en la base de atracción del punto fijo x=0.5.
+
+%Es importante tener en cuenta que en algunos casos, dependiendo del valor inicial, es posible que el sistema converja hacia otros puntos fijos o exhiba comportamientos periódicos o caóticos en lugar de converger hacia x=0.5. Sin embargo, para el parámetro R=2, el punto fijo x=0.5 es estable y se espera que una amplia gama de condiciones iniciales converjan hacia él.
+
+%En resumen, para determinar la base de atracción del punto fijo x=0.5 en el mapa logístico con parámetro R=2, se necesita realizar un análisis iterativo para verificar si diferentes condiciones iniciales convergen hacia ese punto fijo.
+
+%El conjunto de condiciones iniciales que alcanzan un atractor se denomina la base de atracción. En el mapa logístico con parámetro R=2, la base de atracción del punto fijo x=0.5 es:
+%A. No existe punto fijo
+%B. La base de atracción es (0, 1)
+%C. La base de atracción es únicamente el punto fijo x=0.5
+
+%La opción correcta para la base de atracción del punto fijo x=0.5 en el mapa logístico con parámetro R=2 es:
+
+%C. La base de atracción es únicamente el punto fijo x=0.5.
+
+%En el caso del mapa logístico con R=2, el punto fijo x=0.5 es estable y actúa como un atractor. Esto significa que cualquier condición inicial que esté suficientemente cerca de x=0.5 después de un número suficientemente grande de iteraciones convergerá hacia ese punto fijo.
+
+%La base de atracción se refiere al conjunto de condiciones iniciales que convergen hacia un atractor en particular, y en este caso, la base de atracción del punto fijo x=0.5 es solo el punto fijo x=0.5 en sí mismo.
+
+%Por lo tanto, la opción C, "La base de atracción es únicamente el punto fijo x=0.5", es la respuesta correcta.
+
+3. 
+La respuesta es:
+
+B. No.
+
+No todas las órbitas periódicas del mapa logístico tienen un periodo múltiplo de dos (2, 4, 8, ...). El mapa logístico puede exhibir órbitas periódicas de diferentes longitudes, incluyendo periodos impares y no necesariamente múltiplos de dos.
+
+En el mapa logístico, dependiendo del valor del parámetro R y de la condición inicial, se pueden encontrar órbitas periódicas de diferentes longitudes. Al variar el parámetro R, pueden producirse bifurcaciones que generen órbitas periódicas de periodos impares, así como periodos múltiplos de dos y otros valores no enteros.
+
+Por lo tanto, la afirmación de que todas las órbitas periódicas del mapa logístico tienen un periodo múltiplo de dos es incorrecta.
+
+4.
+Los espacios vacíos en el diagrama de bifurcaciones del mapa logístico se denominan:
+
+D. Órbitas periódicas inestables.
+
+En el diagrama de bifurcaciones del mapa logístico, se representa gráficamente la relación entre el parámetro de crecimiento R y los valores atractores del sistema. A medida que se varía el parámetro R, se pueden observar bifurcaciones en las que los valores atractores cambian o se crean nuevas órbitas periódicas.
+
+Los espacios vacíos en el diagrama de bifurcaciones corresponden a regiones en las que no se encuentran valores atractores estables. En estas regiones, las órbitas periódicas son inestables, lo que significa que las condiciones iniciales cercanas a esas regiones pueden dar lugar a comportamientos caóticos o divergentes en lugar de converger hacia un atractor estable.
+
+Por lo tanto, la opción D, "Órbitas periódicas inestables", es la respuesta correcta para denominar los espacios vacíos en el diagrama de bifurcaciones del mapa logístico.
+
+6. 
+En el caso del péndulo simple ideal, un punto fijo estable se encuentra cuando las variables posición (θ) y velocidad angular (ω') toman valores específicos que corresponden a una posición de equilibrio.
+
+La opción correcta para el punto fijo estable es:
+
+A. (θ, ω') = (0, 0).
+
+Cuando el péndulo simple está en su posición de equilibrio, la posición (θ) es cero, lo que significa que el péndulo está en reposo y colgando verticalmente hacia abajo. Además, la velocidad angular (ω') es cero, indicando que no hay movimiento en ese punto.
+
+Por lo tanto, la opción A, "(θ, ω') = (0, 0)", es la respuesta correcta para el caso en el que se tiene un punto fijo estable en el péndulo simple ideal.
+
+7. En el caso del péndulo simple ideal, un punto de silla se encuentra cuando las variables posición (θ) y velocidad angular (ω') toman valores específicos que corresponden a una posición inestable de equilibrio.
+
+La opción correcta para el punto de silla es:
+
+B. (θ, ω') = (π, 0).
+
+Cuando el péndulo simple está en el punto (π, 0), la posición (θ) corresponde a un extremo donde el péndulo está directamente hacia arriba, en la posición más alta. Sin embargo, esta posición no es estable y cualquier perturbación hará que el péndulo se mueva hacia abajo. La velocidad angular (ω') es cero, indicando que no hay movimiento en ese punto.
+
+Un punto de silla es aquel en el que existen direcciones en las que el sistema tiende a alejarse del punto de equilibrio y otras direcciones en las que tiende a acercarse. En el caso del péndulo simple, el punto de silla se encuentra en el punto más alto (π, 0) donde cualquier perturbación hará que el péndulo se mueva hacia abajo.
+
+Por lo tanto, la opción B, "(θ, ω') = (π, 0)", es la respuesta correcta para el caso en el que se tiene un punto de silla en el péndulo simple ideal.
+
+8. En el caso del péndulo simple ideal, los autovalores reales corresponden a las tasas de cambio de las variables en el sistema. Un autovalor real positivo y un autovalor real negativo indican un comportamiento oscilatorio amortiguado alrededor del punto de equilibrio.
+
+La opción correcta para obtener un autovalor real positivo y un autovalor real negativo es:
+
+B. (θ, ω') = (π, 0).
+
+Cuando el péndulo simple está en el punto (π, 0), la posición (θ) corresponde al extremo inferior donde el péndulo está directamente hacia abajo. En este punto, el péndulo no se encuentra en una posición de equilibrio estable, y cualquier perturbación hará que oscile alrededor del punto de equilibrio.
+
+Los autovalores reales positivo y negativo indican que el sistema oscilará alrededor del punto de equilibrio, pero con una tendencia a disminuir su amplitud con el tiempo debido al amortiguamiento.
+
+Por lo tanto, la opción B, "(θ, ω') = (π, 0)", es la respuesta correcta para el caso en el que se obtienen un autovalor real positivo y un autovalor real negativo en el péndulo simple ideal.
+
+9. En el caso del péndulo simple ideal, si ambos autovalores son reales y negativos, esto indica un comportamiento amortiguado en el que el sistema retorna a su posición de equilibrio de manera estable sin oscilaciones.
+
+La opción correcta en la que ambos autovalores son reales y negativos es:
+
+A. (θ, ω') = (0, 0).
+
+Cuando el péndulo simple está en el punto (0, 0), la posición (θ) corresponde al equilibrio donde el péndulo está en reposo y colgando verticalmente hacia abajo. En este punto, no hay movimiento y el sistema se encuentra en una posición de equilibrio estable.
+
+Al tener ambos autovalores reales y negativos en este caso, indica que cualquier perturbación del péndulo simple en su posición de equilibrio será amortiguada y el sistema retornará a su posición de equilibrio sin oscilaciones.
+
+Por lo tanto, la opción A, "(θ, ω') = (0, 0)", es la respuesta correcta para el caso en el que ambos autovalores son reales y negativos en el péndulo simple ideal.
+
+10. Para determinar los autovalores de una matriz, se debe encontrar los valores propios que satisfacen la ecuación característica det(A - λI) = 0, donde A es la matriz, λ es el autovalor y I es la matriz identidad.
+
+Dada la matriz:
+
+csharp
+
+[4 1]
+[2 3]
+
+La ecuación característica es:
+
+det(A - λI) = 0
+
+|4 - λ  1 |
+|2    3 - λ| = 0
+
+Expandiendo la determinante, tenemos:
+
+(4 - λ)(3 - λ) - (2)(1) = 0
+
+Simplificando:
+
+(λ^2 - 7λ + 10) - 2 = 0
+
+λ^2 - 7λ + 8 = 0
+
+Factorizando:
+
+(λ - 1)(λ - 8) = 0
+
+Esto nos da dos soluciones para λ:
+
+λ1 = 1
+λ2 = 8
+
+Por lo tanto, los autovalores de la matriz dada son:
+
+A. λ1 = -1, λ2 = 5
+
+11. Si todos los autovalores de una matriz 2x2 que captura cómo evoluciona el estado de un sistema dinámico son reales y negativos, esto indica que la dinámica del sistema está reflejando:
+
+B. Convergencia.
+
+Cuando todos los autovalores de una matriz son reales y negativos, esto implica que las soluciones del sistema convergen hacia un punto de equilibrio o estabilidad a medida que el tiempo avanza. En otras palabras, el sistema tiende a acercarse y estabilizarse en un estado estable a lo largo del tiempo.
+
+Por lo tanto, la respuesta correcta es la opción B, "Convergencia".
+
+12. Los autovalores de una matriz no definen la dimensión del sistema ni indican si la matriz está capturando el estado del sistema dinámico. Además, los autovalores no proporcionan directamente información sobre la dirección de movimiento.
+
+La opción correcta es:
+
+B. Cómo de rápido se mueve una trayectoria a lo largo de su correspondiente autovector.
+
+Los autovalores de una matriz representan las tasas de cambio asociadas con los autovectores correspondientes. En el contexto de un sistema dinámico, los autovectores representan las direcciones principales de movimiento en el espacio de estados del sistema, mientras que los autovalores indican qué tan rápido una trayectoria se aleja o se acerca al punto de equilibrio en esas direcciones.
+
+Por lo tanto, la opción B, "Cómo de rápido se mueve una trayectoria a lo largo de su correspondiente autovector", es la respuesta correcta.
