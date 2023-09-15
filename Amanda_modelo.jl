@@ -130,20 +130,49 @@ count(eventos)
 
 #Ejercício: hacer una función caminante aleatoria que nos diga la nueva posición del caminante con parametro p 
 
-function caminante_aleatorio(p)
-    p = rand(-1:1)
-    if p == -1
-        @info "Camino para atrás"
+function caminhante_aleatorio(p)
+    # número aleatório entre 0 e 1
+    aleatorio = rand()
+
+    # Determina a direção do movimento com base em 'p'
+    if aleatorio < p
+        # Move para a direita
+        nova_posicao = 1
+    else
+        # Move para a esquerda
+        nova_posicao = -1
     end
-    if p == 1
-        @info "Camino para adelante"
-    end
-#    if -1 < p < 0
-#        @info "Camino para tras"
-#    else 
-#        @info "Camino para adelante"
-#    end
+
+    return nova_posicao
 end
+
+# Exemplo de uso com p=0.5 (50% de chance de cada direção)
+nova_posicao = caminhante_aleatorio(0.5)
+@info "Nova posição: $(nova_posicao)"
+
+
+#código da página do Andres
+pasos = 100
+
+function pos_caminante2(p,pasos)
+    caminata_aleatoria = Int16[]
+    for i in 1:pasos
+        if evento_aleatorio(p) == true
+            push!(caminata_aleatoria,1)
+        else
+            push!(caminata_aleatoria,-1)
+        end
+    end
+    return caminata_aleatoria
+end 
+
+eventos = pos_caminante2(0.5,pasos)
+sum(eventos)
+
+using Plots
+
+plot(eventos)
+scatter!(eventos)
 
 
 
