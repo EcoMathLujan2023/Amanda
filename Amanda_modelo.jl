@@ -95,3 +95,56 @@ for i in 1:10
     end
 end 
 
+#funciones
+
+function evento_aleatorio(p)
+    if rand() < p
+        return true
+    else 
+        return false
+    end 
+end 
+
+evento_aleatorio(0.1)
+evento_aleatorio(0.2)
+
+#True or false - booleanos
+eventos = true
+typeof(eventos)
+
+eventos_ = Bool[]
+typeof(eventos_)
+
+#push modifica la variable (agrega)
+push!(eventos_, false)
+length(eventos_)
+
+eventos_ = Bool[]
+
+for i in 1:100
+    push!(eventos.evento_aleatorio(0.1))
+end
+
+count(eventos)
+
+
+#Ejercício: hacer una función caminante aleatoria que nos diga la nueva posición del caminante con parametro p 
+
+function caminante_aleatorio(p)
+    p = rand(-1:1)
+    if p == -1
+        @info "Camino para atrás"
+    end
+    if p == 1
+        @info "Camino para adelante"
+    end
+#    if -1 < p < 0
+#        @info "Camino para tras"
+#    else 
+#        @info "Camino para adelante"
+#    end
+end
+
+
+
+
