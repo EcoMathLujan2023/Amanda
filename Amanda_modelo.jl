@@ -174,6 +174,31 @@ using Plots
 plot(eventos)
 scatter!(eventos)
 
+#función para crescimiento explonencial
+function crec_exp(λ,N₀,tfinal) #asumiendo un intervalo de tiempo = 1
+    pop = [N₀]
+
+    for t in 1:tfinal-1
+        pop1 = pop[t] + λ * pop[t] #guardamos lo que va a ser el proximo valor de nuestra población 
+        push!(pop, pop1)
+    end
+    return pop
+end
+
+p1 = crec_exp(0.1, 1.0, 100) #crescimiento explonencial
+plot(p1)
+
+p2 = crec_exp(0.015, 1.0, 100)
+plot(p2)
+
+p3 = crec_exp(0.0015, 1.0, 100)
+plot!(p3)
+
+
+
+
+    
+end
 
 
 
