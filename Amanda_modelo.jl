@@ -194,11 +194,86 @@ plot(p2)
 p3 = crec_exp(0.0015, 1.0, 100)
 plot!(p3)
 
+using Plots
+#bucle while
 
+##
+t = 0.0
+h = 0.1
+tfinal = 100
+while t<=tfinal
+    t = t + h
+    @info t
+end
+##
 
-
+#función para crescimiento explonencial (revendo)
+##
+function crec_exp(λ,N₀,tfinal,h=1.0) #asumiendo un intervalo de tiempo = 1 
+    pop = [N₀] #vector de población
+    ts = [0.0] #vector de tiempo
+    i = 1 #indice para decir en que elemento del vector voy a guardar la población
+    t = 0.0 #tiempo (que se va incrementando con h) #hacer que la variable tiempo se sume
+    while t <= tfinal
+        #@info "Tiempo $(t) indice $(i)"
+        pop1 = pop[i] + h * λ * pop[i] #guardamos lo que va a ser el proximo valor de nuestra población 
+        t = ts[i] + h
+        i += 1
+        push!(pop, pop1) #vou agregando população a uma coleção mutável (neste caso, a um vetor)
+        push!(ts, t) #vou agregando tempo ao vetor de tempo
     
+    end
+    return ts, pop
 end
 
+c1 = crec_exp(0.1, 1.0, 100, 0.1)
+c2 = crec_exp(0.1, 1.0, 100, 0.5)
+c3 = crec_exp(0.1, 1.0, 100, 1.0)
+
+plot(c1)
+plot!(c2)
+plot!(c3)
+#lambda tasa de crescimiento fijo (en 1/area) #h representa algo que multiplica eso
+#o sea, mi tasa de crescimiento es una fracción de lambda
+#si hago el h muy chiquito, aplico Euler (transformo una ecuacion discreta en continua y tengo una ec. diferencial)
+##
+
+# Si quiero hacer (simular?) un repique de bacterias que crecen en un medio
+
+function crec_exp(λ,N₀,tfinal,h=1.0, trepique=0.0) #asumiendo un intervalo de tiempo = 1 
+    pop = [N₀] #vector de población
+    ts = [0.0] #vector de tiempo
+    i = 1 #indice para decir en que elemento del vector voy a guardar la población
+    t = 0.0 #tiempo (que se va incrementando con h) #hacer que la variable tiempo se sume
+    while t <= tfinal
+        #@info "Tiempo $(t) indice $(i)"
+        pop1 = pop[i] + h * λ * pop[i] #guardamos lo que va a ser el proximo valor de nuestra población 
+        t = ts[i] + h
+        i += 1
+        if t % trepique <= 0.01
+            pop1 = 0.1 * pop1
+        end
+        push!(pop, pop1) #vou agregando população a uma coleção mutável (neste caso, a um vetor)
+        push!(ts, t) #vou agregando tempo ao vetor de tempo
+    
+    end
+    return ts, pop
+end
+
+c4 = crec_exp(0.1, 1.0, 1000, 0.01, 10.0)
+plot(c4)
+
+for i in 1:30
+    @info i % 5
+end 
+
+##
+# Crescimiento explonencial estocástico, se calcula tiempo 
+# Suposiciones en un tiempo h sucede 1 solo evento 
+# Tomamos como evento a la reproduccion de un individuo
+#
+# la tasa per capita es λ la tasa total es Numero de individuo
+
+# Crear una funcion para calcular la distribución exponencial
 
 
