@@ -267,13 +267,74 @@ for i in 1:30
     @info i % 5
 end 
 
+
+
 ##
-# Crescimiento explonencial estocástico, se calcula tiempo 
+# Crescimiento explonencial estocástico, se calcula tiempo que transcurre hasta un evento (cuando va pasar el crescimiento y no simular exactamente lo que va pasando en un intervalo de tiempo)
+# Se simula el tiempo en que transcurre algo, en un evento discreto, utilizando una distribución exponencial (una dist. exponencial es exactamente el tiempo que transcurre hasta que pasa un evento).
 # Suposiciones en un tiempo h sucede 1 solo evento 
 # Tomamos como evento a la reproduccion de un individuo
 #
-# la tasa per capita es λ la tasa total es Numero de individuo
+# la tasa per capita es λ la tasa total es Numero de individuos * λ
 
-# Crear una funcion para calcular la distribución exponencial
+# Crear una funcion para calcular la distribución exponencial con tasa λ
+# Como se ve una dist. exponencial con tasa λ
+function distr_exp()  
+    n = 10000
+    de = zeros(n) #lo ponemos en un vector que contiene 10000 zeros
+    λ = .1
+    for i in 1:n #hacemos este calculo 10000 x.
+        de[i] = log(rand())/λ #a partir de un numero al azar entre 0 y 1 -- rand. Esta formula da una dist. exponencial
+    end
+    return de
+end
+
+## Para graficar la densidad de la distribución
+
+using StatsPlots
+
+de = distr_exp(0) 
+plot(de)
+
+#para ver la forma de la dist. de esta fç, tengo que usar el paquete StatsPlots y:
+
+density(de)
 
 
+## modelo estocastico #a medida que la poblacion es mas grande, es tiempo entre eventos es menor
+
+function crec_exp_sto(λ,N₀,tfinal)    
+    pop = [N₀]                        # Vector para la poblacion
+    ts  = [0.0]                       # Vector de valores de tiempo
+    i = 1                             # variable indice
+    t = 0.0                           # variable auxiliar de tiempo
+    while t <= tfinal
+        #@info "Tiempo $(t) indice $(i)"
+
+        B = pop[i]*λ
+        t = ts[i] - log(rand()) / B
+        pop1 = pop[i] + 1 #en el proximo tiempo, sucede solo un evento: la poblacion aumenta en 1
+        i += 1                  
+        push!(pop, pop1)
+        push!(ts,t)
+    end
+    return ts,pop
+end
+
+
+s1 = crec_exp_sto(0.1,1.0,100)
+c1 = crec_exp(0.1,1.0,100,0.001)
+
+plot(s1)
+plot!(c1)
+s2 = crec_exp_sto(0.1,1.0,100)
+plot!(s2)
+
+
+## 
+#  Crecimiento estocástico con repique cada 50
+#
+#  Usamos la misma funcion agregando otro parametro
+#
+tmax = 5; tmin=2;
+tt=1:24
