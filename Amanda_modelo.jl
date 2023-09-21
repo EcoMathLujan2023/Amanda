@@ -1,5 +1,7 @@
 #intento de desarollo de modelo matemático para evaluar ...
 
+#Clase 1
+
 #primeiro: activar paquete (en el terminal, poner 'activate .')
 #segundo: que paquetes voy a usar
 
@@ -174,6 +176,8 @@ using Plots
 plot(eventos)
 scatter!(eventos)
 
+#Clase 2
+
 #función para crescimiento explonencial
 function crec_exp(λ,N₀,tfinal) #asumiendo un intervalo de tiempo = 1
     pop = [N₀]
@@ -313,7 +317,7 @@ function crec_exp_sto(λ,N₀,tfinal)
 
         B = pop[i]*λ
         t = ts[i] - log(rand()) / B
-        pop1 = pop[i] + 1 #en el proximo tiempo, sucede solo un evento: la poblacion aumenta en 1
+        pop1 = pop[i] + 1 #en el proximo tiempo, sucede solo un evento: la poblacion aumenta en 1 #el tiempo se va actualizando con esta fç exp.
         i += 1                  
         push!(pop, pop1)
         push!(ts,t)
@@ -338,3 +342,157 @@ plot!(s2)
 #
 tmax = 5; tmin=2;
 tt=1:24
+
+#Clase 3
+
+## 
+# Crecimiento y muerte
+#
+#
+# ahora tenemos dos eventos: Nacimiento y muerte  
+#
+# Podemos simularla de forma deterministica
+#
+# Introducimos el empaquetamiento de parametros 
+
+
+
+##
+#
+#   par = tupla, tuplas son vectores invariantes
+#
+function nac_mue_det(par,N₀,tfinal,h=1.0)    # asume intervalo de tiempo = h
+    
+    λ , μ = par                              #λ natalidad; μ mortalidad
+    
+    pop = Float64[N₀]                        #poblacion que imprime el valor inicial de poblacion            # Forzamos variable a Float64 (numero real)
+    ts  = [0.0]                              #tiempo
+    i = 1                                    #indice valores de la poblacion
+    t = 0.0                                  #tiempo
+    #@info "Pop[1] $(pop[i]) indice $(i)"
+
+    while t <= tfinal                        #que t quede dando vueltas y que sea menor que el tiempo final
+        pop1 = pop[i] + h * ( λ - μ) * pop[i]#la poblacion, en tiempo h, los nascimientos dados por λ menos las muertes μ 
+        #@info "Pop1 $(pop1) indice $(i)"
+        t = ts[i] + h
+        i += 1                   # equivale a i = i + 1 
+        push!(pop, pop1)
+        push!(ts,t)
+    end
+    return ts,pop
+end
+
+
+p1 = nac_mue_det( [0.3, 0.3], 100, 100 )    #[x, x] es la tupla con los datos de la variable 'par'
+p2 = nac_mue_det( [0.5, 0.3], 100, 100 )
+p3 = nac_mue_det( [0.3, 0.3], 100, 100 ) #p3 = p1 fiz somente pra rodar bem no meu pc
+using Plots
+plot(p3, legend=false)
+plot!(p2, legend=false)
+
+# Simulación crecimiento muerte estocástica
+#
+"""
+    nac_mue_det(par, fin_t, N₀,h)
+
+Simula el proceso de nacimiento muerte 
+
+## Argumentos
+- `par::Tuple{Float64, Float64}`: Tupla de parámetros de crecimiento, tasa de crecimiento, tasa de mortalidad
+- `fin_t::Float64`: tiempo de simulación
+- `N₀::Float64`: población inicial.
+
+## Retorno
+- `tiempo::Vector{Float64}`: Vector de tiempo simulado.
+- `poblacion::Vector{Float64}`: Vector de la población simulada en función del tiempo.
+"""
+function nac_mue_sto(par,N₀,tfinal)    
+    λ , μ = par                       # desempaquetamos los parámetros
+    
+    pop = Float64[N₀]                 # Forzamos variable a Float64 (numero real)
+ 
+    ts  = [0.0]                       # Vector de valores de tiempo
+    i = 1                             # variable indice
+    t = 0.0                           # variable auxiliar de tiempo
+    while t <= tfinal
+        #@info "Tiempo $(t) indice $(i)"
+
+        B = pop[i]*λ                  #nascimientos
+        M = pop[i]*μ                  #muertes (depende del numero poblacional por la tasa μ)
+        R = B + M                     #tasa total de eventos
+        t = ts[i] - log(rand()) / R   #tiempo pasa a una tasa igual a la tasa total de eventos (antes teníamos solamente evento B. Ahora, con las muertes, lo dividimos por R). #O sea, el proximo evento (vida o muerte) va a suceder a una tasa R y calculamos el tiempo usando la fç aleatoria log(rand()) con dist expon.
+        if rand() < B/R               # probabilidad de nacimiento (para saber si sucede evento o muerte, ya que ya sabemos que algo va a pasar)
+            pop1 = pop[i] + 1         #ESTO NO SERIA MENOR O IGUAL?
+        else
+            pop1 = pop[i] - 1
+        end
+
+        i += 1                  
+        push!(pop, pop1)
+        push!(ts,t)
+    end
+    return ts,pop
+end
+
+
+p1 = nac_mue_det( [0.2, 0.3], 100, 100, 0.01 )
+plot(p1, legend=false)
+
+p2 = nac_mue_sto( [0.2, 0.3], 100, 100 )
+plot!(p2)
+
+
+p1 = nac_mue_det( [0.2, 0.2], 100, 100, 0.01 )
+plot(p1, legend=false)
+p2 = nac_mue_sto( [0.2, 0.2], 100, 100 )
+plot!(p2)
+
+
+## 
+# Crecimiento logistico estocástico
+#
+#  dpop = λ pop (1 - pop / K  )  = λ pop -  pop * pop * λ / K 
+#
+function logistico_sto(par,N₀,tfinal)    
+    λ , K = par                       # desempaquetamos los parámetros
+    
+    pop = Float64[N₀]                 # Forzamos variable a Float64 (numero real)
+ 
+    ts  = [0.0]                       # Vector de valores de tiempo
+    i = 1                             # variable indice
+    t = 0.0                           # variable auxiliar de tiempo
+    while t <= tfinal
+        #@info "Tiempo $(t) indice $(i)"
+
+        B = pop[i]*λ
+        M = pop[i]*pop[i]*λ/K         #esto cambia para encuadrarse en la fç logística
+        R = B + M 
+        t = ts[i] - log(rand()) / R
+        if rand() < B/R                   # probabilidad de nacimiento 
+            pop1 = pop[i] + 1
+        else
+            pop1 = pop[i] - 1
+        end
+
+        i += 1                  
+        push!(pop, pop1)
+        push!(ts,t)
+    end
+    return ts,pop
+end
+
+p2 = logistico_sto( [0.2, 100], 10, 1000 )
+plot(p2)
+p3 = logistico_sto( [0.4, 200], 10, 1000 )
+plot!(p3)
+p4 = logistico_sto( [1, 200], 10, 1000 )
+plot!(p4)
+
+
+## 
+# Ejercicio
+#
+# 1) Crecimiento logístico deterministica
+#
+# 2) Crecimiento logistico estocástico + cosecha
+#
