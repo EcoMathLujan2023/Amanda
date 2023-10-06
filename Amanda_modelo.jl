@@ -58,47 +58,48 @@ using Plots
 
 #ECUACIONES
 #da = vector de derivadas; a = vector de variables (tiempo t); p = vector de parametros
-function deterministica(da, a, p, t) 
-    C, O, B = a 
-    Ci, Ce, Oi, Oe, Os, K1, K3, K4 = p 
+function deterministica(du, u, p, t) 
+    C, O, B = u
+    Ci, Ce, Omax, k1, k2, k3, k4, k5 = p 
+    
+    dC = (Ci + Ce) - k1 * C * B                   #variación Streeter-Phelps
+    dO = k2 * C * (Omax - O) / (k2 + C) - k3 * C  #Michaelis-Menten kinetics
+    dB = C * k4 - B * k5 
+    #dB = (k4 * B * (1 - (B/k5))) - (k6 * B)      #crescimiento logistico con mortalidad?
 
-    dC = (Ci + Ce) - B * C * K2
-    dO = (Oi + Oe - Os) * K1 - B * C * K2
-    dB = B * C * K3 - B * K4
-
-    da[1] = dC #armaceno C en da[1]
-    da[2] = dO #armaceno 0 en da[2]
-    da[3] = dB #armaceno B en da[3]
+    du[1] = dC #armaceno C en du[1]
+    du[2] = dO #armaceno 0 en du[2]
+    du[3] = dB #armaceno B en du[3]
 end
 
 #DEFINO CONDICIONES INICIALES
-C0 = 1.0
-O0 = 7.0
-B0 = 10.0
+C0 = 5.0
+O0 = 5.0
+B0 = 0.5
 
 #CONDICIONES INICIALES
-a0 = [C0, O0, B0]
+u0 = [C0, O0, B0]
 
 #DEFINO PARAMETROS 
-Ci = 80.0     #Ci = carga organica que ingresa con descarte de efluente mg/L
+Ci = 10.0     #Ci = carga organica que ingresa con descarte de efluente mg/L
 Ce = 5.0      #Ce = carga organica ya presente en el río mg/L
-Oi = 1.0      #Oi = oxígeno disuelto que ingresa con el descarte de efluente mg/L
-Oe = 5.0      #Oe = oxígeno disuelto presente en el río mg/L
-Os = 9.2      #Os = oxígeno de saturación mg/L
-K1 = 0.7      #K1 = tasa de reoxigenación (depende del tipo de cuerpo de agua) t^-1
-K2 = 0.4      #K2 = tasa de desoxigenación (depende del tipo de descarte) t^-1
-K3 = 0.3      #K3 = tasa de asimilación de nutrientes t^-1
-K4 = 0.5      #K4 = tasa de mortalidad de la población t^-1
+Omax = 9.2    # O2 saturación mg/L
+k1 = 0.8      #Tasa de consumo de carga organica por las bacterias
+k2 = 0.5      #Tasa de produccion de oxígeno 
+k3 = 0.2      #Tasa de consumo de oxígeno devido a la decomposición carga org.
+k4 = 0.5      #Tasa de crescimiento de las bacterias decompositoras por la disponibilidad de carga org.
+k5 = 0.4      #Tasa de capacidad de soporte de las bacterias en el ambiente - crescimiento maximo
+#k6 = 0.1      #si uso crescimiento logístico: Tasa de mortalidad de las bacterias
 
 #PARAMETROS
-p = [Ci, Ce, Oi, Oe, Os, K1, K2, K3, K4]
+p = [Ci, Ce, Omax, k1, k2, k3, k4, k5] #, k6 (si incluo mortalidad)
 
 #TIEMPO
-tfinal = 100.0
+tfinal = 10.0
 tspan = (0.0, tfinal)  # tiempo va de 0 a tfinal
 
 #RESOLUCIÓN ODE
-prob = ODEProblem(deterministica, a0, tspan, p)
+prob = ODEProblem(deterministica, u0, tspan, p)
 sol = solve(prob) #contine soluciones en diferentes puntos del tiempo
 
 # EXTRAIR SOLUCIONES EN EL TIEMPO 
